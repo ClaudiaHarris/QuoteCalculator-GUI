@@ -11,7 +11,8 @@ public class QuoteCalculator extends JFrame {
     private JLabel basePremiumLabel, fullPaymentLabel, downPaymentLabel, remainingLabel, monthlyLabel, agentLabel;
     private JButton contactAgentButton, emailQuoteButton;
     private final OkHttpClient client = new OkHttpClient();
-    private static final String API_URL = "http://localhost:8080"; // Update to Heroku later
+    private static final String API_URL = "https://quote-api-claudia.herokuapp.com";
+      
 
     public QuoteCalculator() {
         setTitle("Insurance Quote Calculator");
