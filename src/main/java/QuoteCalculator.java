@@ -12,7 +12,7 @@ public class QuoteCalculator extends JFrame {
     private JButton contactAgentButton, emailQuoteButton;
     private final OkHttpClient client = new OkHttpClient();
     private static final String API_URL = "https://quote-api-claudia.herokuapp.com";
-      
+
 
     public QuoteCalculator() {
         setTitle("Insurance Quote Calculator");
@@ -104,7 +104,7 @@ public class QuoteCalculator extends JFrame {
             String json = String.format("{\"age\":%d,\"years\":%d,\"accidents\":%b}", age, years, hasAccidents);
             RequestBody body = RequestBody.create(json, MediaType.parse("application/json"));
             Request request = new Request.Builder()
-                    .url(API_URL + "/calculate-quote")
+                    .url("https://quote-api-claudia-4d1423dc8823.herokuapp.com/api/calculate-quote")
                     .post(body)
                     .build();
             Response response = client.newCall(request).execute();
@@ -237,7 +237,7 @@ public class QuoteCalculator extends JFrame {
                 );
                 RequestBody body = RequestBody.create(json, MediaType.parse("application/json"));
                 Request request = new Request.Builder()
-                        .url(API_URL + "/email-quote")
+                        .url("https://quote-api-claudia-4d1423dc8823.herokuapp.com/api/calculate-quote")
                         .post(body)
                         .build();
                 Response response = client.newCall(request).execute();
