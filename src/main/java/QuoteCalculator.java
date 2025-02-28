@@ -11,7 +11,7 @@ public class QuoteCalculator extends JFrame {
     private JLabel basePremiumLabel, fullPaymentLabel, downPaymentLabel, remainingLabel, monthlyLabel, agentLabel;
     private JButton contactAgentButton, emailQuoteButton;
     private final OkHttpClient client = new OkHttpClient();
-    private static final String API_URL = "https://quote-api-claudia.herokuapp.com";
+    private static final String API_URL = "https://quote-api-claudia-4d1423dc8823.herokuapp.com/api/calculate-quote";
 
 
     public QuoteCalculator() {
@@ -237,7 +237,7 @@ public class QuoteCalculator extends JFrame {
                 );
                 RequestBody body = RequestBody.create(json, MediaType.parse("application/json"));
                 Request request = new Request.Builder()
-                        .url("https://quote-api-claudia-4d1423dc8823.herokuapp.com/api/calculate-quote")
+                        .url("https://quote-api-claudia-4d1423dc8823.herokuapp.com/api/email-quote")
                         .post(body)
                         .build();
                 Response response = client.newCall(request).execute();
@@ -263,6 +263,7 @@ public class QuoteCalculator extends JFrame {
 
 class PremiumDetails {
     double basePremium, fullPaymentDiscount, downPayment, remainingBalance, monthlyPayment;
+    public PremiumDetails() {} // Default constructor for Jackson
     PremiumDetails(double base, double full, double down, double remaining, double monthly) {
         this.basePremium = base;
         this.fullPaymentDiscount = full;
@@ -270,4 +271,14 @@ class PremiumDetails {
         this.remainingBalance = remaining;
         this.monthlyPayment = monthly;
     }
+    public double getBasePremium() { return basePremium; }
+    public double getFullPaymentDiscount() { return fullPaymentDiscount; }
+    public double getDownPayment() { return downPayment; }
+    public double getRemainingBalance() { return remainingBalance; }
+    public double getMonthlyPayment() { return monthlyPayment; }
+    public void setBasePremium(double basePremium) { this.basePremium = basePremium; }
+    public void setFullPaymentDiscount(double fullPaymentDiscount) { this.fullPaymentDiscount = fullPaymentDiscount; }
+    public void setDownPayment(double downPayment) { this.downPayment = downPayment; }
+    public void setRemainingBalance(double remainingBalance) { this.remainingBalance = remainingBalance; }
+    public void setMonthlyPayment(double monthlyPayment) { this.monthlyPayment = monthlyPayment; }
 }
